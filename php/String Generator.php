@@ -41,3 +41,16 @@ public static function strGen($length = 8, $flag = 'ALPHANUMERIC')
     }
     return $result;
 }
+
+public static function getBytes($length)
+    {
+        $length = (int) $length;
+        if ($length <= 0) {
+            return false;
+        }
+        $bytes = openssl_random_pseudo_bytes($length, $cryptoStrong);
+        if ($cryptoStrong === true) {
+            return $bytes;
+        }
+        return false;
+    }
